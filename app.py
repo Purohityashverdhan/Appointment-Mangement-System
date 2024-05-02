@@ -66,7 +66,12 @@ def create_new_doc():
     db.session.add(new_doctor)
     db.session.commit()
 
-    return redirect("/view")
+    return redirect("/display_doctor")
+@app.route('/display_doctor',methods=['GET'])
+def display_doctor():
+    doc = Doctor.query.all()
+    return render_template('display_docs.html', doc=doc)
+
 
 if __name__ == '__main__':
     with app.app_context():
